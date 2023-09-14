@@ -21,7 +21,7 @@ class ProjectsController extends Controller
             'sign_fiscalyear' => $this->ProjectsModel->get_sign_fiscalyear()
         );
         
-        $this->adminView('projects/projectsTable', $data);
+        $this->adminView('projects/projectstable', $data);
     }
 
     public function get_project_by_id($id): void
