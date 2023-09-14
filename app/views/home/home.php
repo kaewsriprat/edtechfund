@@ -24,7 +24,7 @@
 
     <hr>
 
-    <div class="col-6">
+    <div class="col-3">
       <div class="card mb-3">
         <div class="card-body">
           <span class="d-block fw-semibold mb-1">ผลการดำเนินงานไตรมาสที่ 1</span>
@@ -32,7 +32,7 @@
         <div id="indicatorsChartPeriod1"></div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
       <div class="card mb-3">
         <div class="card-body">
           <span class="d-block fw-semibold mb-1">ผลการดำเนินงานไตรมาสที่ 2</span>
@@ -40,7 +40,7 @@
         <div id="indicatorsChartPeriod2"></div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
       <div class="card mb-3">
         <div class="card-body">
           <span class="d-block fw-semibold mb-1">ผลการดำเนินงานไตรมาสที่ 3</span>
@@ -48,7 +48,7 @@
         <div id="indicatorsChartPeriod3"></div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
       <div class="card mb-3">
         <div class="card-body">
           <span class="d-block fw-semibold mb-1">ผลการดำเนินงานไตรมาสที่ 4</span>
