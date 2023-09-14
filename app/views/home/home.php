@@ -73,15 +73,15 @@
       'data': [{
         'x': 'ไตรมาสที่ 1',
         'y': 1.0140,
-        'goal': [{
-          name: 'ค่าเป้าหมาย',
-          value: 5,
-          strokeColor: 'rgb(255, 171, 0)'
-        }]
+         goals: [{
+            name: 'ค่าเป้าหมาย',
+            value: 5,
+            strokeColor: 'rgb(255, 171, 0)'
+          }]
       }, {
         'x': 'ไตรมาสที่ 2',
         'y': 1.1905,
-        'goal': [{
+        goals: [{
           name: 'ค่าเป้าหมาย',
           value: 5,
           strokeColor: 'rgb(255, 171, 0)'
@@ -89,19 +89,19 @@
       }, {
         'x': 'ไตรมาสที่ 3',
         'y': 1.8618,
-        'goal': [{
-          name: 'ค่าเป้าหมาย',
-          value: 5,
-          strokeColor: 'rgb(255, 171, 0)'
-        }]
+         goals: [{
+            name: 'ค่าเป้าหมาย',
+            value: 5,
+            strokeColor: 'rgb(255, 171, 0)'
+          }]
       }, {
         'x': 'ไตรมาสที่ 4',
         'y': 3.7025,
-        'goal': [{
-          name: 'ค่าเป้าหมาย',
-          value: 5,
-          strokeColor: 'rgb(255, 171, 0)'
-        }]
+         goals: [{
+            name: 'ค่าเป้าหมาย',
+            value: 5,
+            strokeColor: 'rgb(255, 171, 0)'
+          }]
       }]
     }];
 
@@ -146,7 +146,7 @@
         },
         plotOptions: {
           bar: {
-            columnWidth: columnWidth+'%'
+            columnWidth: columnWidth + '%'
           }
         },
         colors: ['#696cff'],
