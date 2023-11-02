@@ -14,7 +14,7 @@
         <div class="card-header bg-label-primary py-3">
           <span class="fw-bold fs-5"><i class="bx bx-bar-chart pe-2"></i>เปรียบเทียบรายรับ/รายจ่าย (ล้านบาท)</span>
         </div>
-        <div class="card-body">
+        <div class="card-body pt-4 pb-0">
           <div id="chartDiv"></div>
         </div>
       </div>

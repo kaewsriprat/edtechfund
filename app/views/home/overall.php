@@ -28,13 +28,35 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <span class="d-block fw-semibold mb-1">เปรียบเทียบรายรับ/รายจ่าย (ล้านบาท)</span>
+                </div>
+                <div id="balancePieChartDiv"></div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <span class="d-block fw-semibold mb-1">สินทรัพย์/หนี้สิน</span>
+                </div>
+                <div id="assetsChart"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
     $(document).ready(function() {
-        let projects = <?php echo json_encode($projects); ?>;
+        const projects = <?php echo json_encode($projects); ?>;
+        const balanceSum = <?php echo json_encode($balance_summary); ?>;
+        const assets = <?php echo json_encode($assets); ?>;
 
-        let assessmentByPeriod = [{
+        const assessmentByPeriod = [{
             'data': [{
                 'x': 'ไตรมาสที่ 1',
                 'y': 1.0140,
@@ -70,9 +92,10 @@
             }]
         }];
 
-        projectChart('projectsChart', seriesBuilder('Projects', projects), 350, '40')
-        indicatorsChart('indicatorsChartByPeriod', assessmentByPeriod, 350, '40')
-
+        indicatorsChart('indicatorsChartByPeriod', assessmentByPeriod, 250, '40')
+        projectChart('projectsChart', seriesBuilder('Projects', projects), 250, '40')
+        balancePieChart(balanceSum)
+        assetsChart(assets)
     })
 
     function indicatorsChart(id, series, height = 170, columnWidth = '75') {
@@ -150,6 +173,77 @@
         var chart = new ApexCharts(
             document.querySelector("#" + id), options);
         chart.render();
+    }
+
+    function balancePieChart(data) {
+        var options = {
+            series: [Math.round((data.income / 1000000), 2), Math.round((data.expense / 1000000), 2)],
+            labels: ['รายรับ (ล้านบาท)', 'รายจ่าย (ล้านบาท)'],
+            colors: ['#696cff', '#ffcc00'],
+            chart: {
+                height: 250,
+                type: 'pie'
+            },
+            dataLabels: {
+                enabled: true
+            },
+            legend: {
+                show: true,
+                showForSingleSeries: true,
+                customLegendItems: ['รายรับ', 'รายจ่าย'],
+                markers: {
+                    fillColors: ['#696cff', '#ffcc00']
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#balancePieChartDiv"), options);
+        chart.render();
+    }
+
+    function assetsChart(assets) {
+
+        let month_name = []
+        let credit = []
+        let debit = []
+        //map function
+        assets.map((item) => {
+            month_name.push(item['month_name_abbr_th'])
+            credit.push(Math.round(item['credit'] / 1000000))
+            debit.push(Math.round(item['debit'] / 1000000))
+        })
+
+        var options = {
+            series: [{
+                name: 'สินทรัพย์',
+                type: 'column',
+                data: credit,
+                color: '#696cff'
+            }, {
+                name: 'หนี้สินและทุน',
+                type: 'column',
+                data: credit,
+                color: '#ffcc00'
+            }],
+            chart: {
+                height: 250,
+                type: 'line',
+                stacked: false
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: [1, 1, 4]
+            },
+            xaxis: {
+                categories: month_name,
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#assetsChart"), options);
+        chart.render();
+
     }
 
     function projectStatusColorLookup(status) {

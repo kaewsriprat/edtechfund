@@ -124,6 +124,36 @@ class FinanceModel extends Model
         }
     }
 
+    public function get_yearly_assets_total(){
+        $sql = "SELECT credit.month_name_abbr_th, credit.credit, debit.debit
+                FROM 
+                (SELECT mm.month_name_abbr_th, SUM(assets.summary) AS credit
+                FROM assets
+                JOIN month_master mm
+                ON assets.month = mm.id
+                WHERE assets.category = 'สินทรัพย์'
+                GROUP BY assets.month
+                ORDER BY mm.fiscal_year_month_order) AS credit
+                JOIN
+                (SELECT mm.month_name_abbr_th, SUM(assets.summary) AS debit
+                FROM assets
+                JOIN month_master mm
+                ON assets.month = mm.id
+                WHERE assets.category = 'หนี้สินและทุน'
+                GROUP BY assets.month
+                ORDER BY mm.fiscal_year_month_order) AS debit
+                ON credit.month_name_abbr_th = debit.month_name_abbr_th";
+
+        try {
+            $stmt = $this->Rdb->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
     private function credit_debit($data)
     {
         $credit = 0;

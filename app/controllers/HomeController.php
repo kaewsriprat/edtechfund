@@ -9,11 +9,17 @@ class HomeController extends Controller
     }
 
     public function overallDashboard() {
+         if (count($_SESSION) == 0 || $_SESSION['user']['isLogin'] == false) {
+            Site::redirect('/auth/login');
+        }
         $this->model('HomeModel');
+        $this->model('FinanceModel');
         $data = array(
             'title' => 'ตัวชี้วัดสำนัก',
             'assessment' => $this->data_group($this->HomeModel->get_assessment_result(2023)),
             'projects' => $this->HomeModel->get_projects_status(),
+            'balance_summary' => $this->FinanceModel->get_balance_summary(),
+            'assets' => $this->FinanceModel->get_yearly_assets_total()
         );
         $this->adminView('home/overall', $data);
     }

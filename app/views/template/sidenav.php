@@ -73,7 +73,7 @@ $menuArray = [
         'Role' => [],
         'Submenu' => [
             [
-                'Title' => 'สินทรัพย์และทุน',
+                'Title' => 'สินทรัพย์/หนี้สิน',
                 'Link' => '/finance/assets',
                 'Active' => setActive('assets'),
                 'Header' => '',
@@ -83,7 +83,7 @@ $menuArray = [
                 'Submenu' => [],
             ],
             [
-                'Title' => 'งบดุล',
+                'Title' => 'รายรับ/รายจ่าย',
                 'Link' => '/finance/balance',
                 'Active' => setActive('balance'),
                 'Header' => '',
