@@ -91,7 +91,8 @@ class FinanceModel extends Model
         FROM assets
         JOIN assets_calculate_value acv
         ON assets.month = acv.month AND assets.year = acv.year
-        WHERE assets.month = :month AND assets.year = :year AND category = 'หนี้สินและทุน'";
+        WHERE assets.month = :month AND assets.year = :year AND category = 'หนี้สินและทุน'
+        GROUP BY assets.year, assets.month, acv.value";
 
         $data = array(
             'month' => $month,
